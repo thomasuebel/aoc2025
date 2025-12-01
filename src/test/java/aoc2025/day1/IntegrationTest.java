@@ -34,6 +34,7 @@ class IntegrationTest {
             }
         }
 
-        assertEquals(3, zeroCount);
+        assertEquals(3, zeroCount); // three 3 exactly at 0
+        assertEquals(6, dial.getWraparounds()); // 6 wraparounds at 0 including zero-at-rest
     }
 }
