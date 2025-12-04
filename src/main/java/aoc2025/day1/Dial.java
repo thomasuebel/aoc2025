@@ -8,33 +8,53 @@ package aoc2025.day1;
 public class Dial {
     int position = 0;
     int wraparounds = 0;
+    int zeroPositionsAfterCompletedTurn = 0;
 
     protected Dial(int position) {
         this.position = position;
     }
 
     void turnLeft(final Turn turn) {
-        int by = turn.range();
-        // Number of times we pass 0 when moving left by 'by' from current 'position'
-        int wrapsThisTurn = (by - position + 99) / 100;
-        if (wrapsThisTurn > 0) {
-            wraparounds += wrapsThisTurn;
+        for (int i = 0; i < turn.range(); i++) {
+            position--;
+            wrapAround();
         }
-        position = Math.floorMod(position - by, 100);
+        checkZeroPosition();
     }
 
     void turnRight(final Turn turn) {
-        int totalMovement = position + turn.range();
-        wraparounds += totalMovement / 100;
-        position = totalMovement % 100;
+        for (int i = 0; i < turn.range(); i++) {
+            position++;
+            wrapAround();
+        }
+        checkZeroPosition();
+    }
+
+    void wrapAround() {
+        if (position < 0) {
+            position = 99;
+        }
+        if (position > 99) {
+            position = 0;
+        }
+        if (position == 0) {
+            wraparounds++;
+        }
+    }
+
+    void checkZeroPosition() {
+        if (position == 0) {
+            zeroPositionsAfterCompletedTurn++;
+        }
     }
 
     public void turn(final Turn turn) {
         if (turn.isLeft()) {
             turnLeft(turn);
-        } else {
-            turnRight(turn);
+            return;
         }
+
+        turnRight(turn);
     }
 
     public int getPosition() {
@@ -43,6 +63,10 @@ public class Dial {
 
     public int getWraparounds() {
         return wraparounds;
+    }
+
+    public int getZeroPositionsAfterCompletedTurn() {
+        return zeroPositionsAfterCompletedTurn;
     }
 }
 

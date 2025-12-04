@@ -16,57 +16,32 @@ class DialTest {
         assertEquals(0, dial.getWraparounds());
     }
 
-    @ParameterizedTest(name = "Left from {0} by {1} -> Pos: {2}, Wraps: {3}")
-    @CsvSource({
-        // wrap-around at 0
-        "0, 1, 99, 1",
-        "0, 2, 98, 1",
-        // simple move without wrap
-        "10, 3, 7, 0",
-        // multi-wrap (>= 100)
-        "5, 107, 98, 2",
-        // Exact wrap boundary
-        "0, 100, 0, 1"
-    })
-    void turnLeft_wrapsAndMovesCorrectly(int start, int by, int expectedPos, int expectedWraps) {
-        Dial dial = new Dial(start);
+    @Test
+    void turnRight_aThousandClicks() {
+        Dial dial = new Dial(50);
 
-        dial.turnLeft(new Turn("L" + by));
-        assertEquals(expectedPos, dial.getPosition());
-        assertEquals(expectedWraps, dial.getWraparounds());
-    }
+        dial.turn(new Turn("R1000"));
+        assertEquals(50, dial.getPosition());
+        assertEquals(10, dial.getWraparounds());
 
-    @ParameterizedTest(name = "Right from {0} by {1} -> Pos: {2}, Wraps: {3}")
-    @CsvSource({
-        // wrap-around at 99
-        "99, 1, 0, 1",
-        "99, 2, 1, 1",
-        // simple move without wrap
-        "10, 3, 13, 0",
-        // multi-wrap (>= 100)
-        "95, 110, 5, 2",
-        // Exact wrap boundary
-        "0, 100, 0, 1"
-    })
-    void turnRight_wrapsAndMovesCorrectly(int start, int by, int expectedPos, int expectedWraps) {
-        Dial dial = new Dial(start);
-
-        dial.turnRight(new Turn("R" + by));
-        assertEquals(expectedPos, dial.getPosition());
-        assertEquals(expectedWraps, dial.getWraparounds());
     }
 
     @Test
-    void turn_usesDirection() {
+    void turnLeft_FromZero_ByOne_DoesNotCountAWraparound() {
         Dial dial = new Dial(0);
 
         dial.turn(new Turn("L1"));
         assertEquals(99, dial.getPosition());
-        assertEquals(1, dial.getWraparounds());
+        assertEquals(0, dial.getWraparounds());
+    }
+
+    @Test
+    void turnRight_FromZero_by100_CreatingOneWraparound() {
+        Dial dial = new Dial(0);
 
         dial.turn(new Turn("R100")); // full circle -> unchanged position, +1 wrap
-        assertEquals(99, dial.getPosition());
-        assertEquals(2, dial.getWraparounds());
+        assertEquals(0, dial.getPosition());
+        assertEquals(1, dial.getWraparounds());
     }
 
     @Test
