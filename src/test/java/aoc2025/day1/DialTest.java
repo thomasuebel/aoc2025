@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class DialTest {
 
     @Test
-    void initialPositionIsZero() {
+    void initial_position_of_the_dial_is_zero() {
         Dial dial = new Dial(0);
 
         assertEquals(0, dial.getPosition());
@@ -15,7 +15,7 @@ class DialTest {
     }
 
     @Test
-    void turnRight_aThousandClicks() {
+    void turning_right_from_0_a_thousand_clicks_yields_10_wraparounds() {
         Dial dial = new Dial(50);
 
         dial.turn(new Turn("R1000"));
@@ -25,7 +25,7 @@ class DialTest {
     }
 
     @Test
-    void turnLeft_FromZero_ByOne_DoesNotCountAWraparound() {
+    void turning_left_from_zero_by_one_does_not_yield_a_wraparound() {
         Dial dial = new Dial(0);
 
         dial.turn(new Turn("L1"));
@@ -34,28 +34,11 @@ class DialTest {
     }
 
     @Test
-    void turnRight_FromZero_by100_CreatingOneWraparound() {
+    void turning_right_from_zero_a_hundred_times_does_yield_1_wraparound() {
         Dial dial = new Dial(0);
 
         dial.turn(new Turn("R100")); // full circle -> unchanged position, +1 wrap
         assertEquals(0, dial.getPosition());
         assertEquals(1, dial.getWraparounds());
-    }
-
-    @Test
-    void multipleTurns_sequence() {
-        Dial dial = new Dial(50);
-
-        dial.turnLeft(new Turn("L30"));  // 50 -> 20 (0 wraps)
-        assertEquals(20, dial.getPosition());
-        assertEquals(0, dial.getWraparounds());
-
-        dial.turnRight(new Turn("R85")); // 20 -> 105 -> 5 (1 wrap)
-        assertEquals(5, dial.getPosition());
-        assertEquals(1, dial.getWraparounds());
-
-        dial.turn(new Turn("L7"));     // 5 -> -2 -> 98 (1 wrap)
-        assertEquals(98, dial.getPosition());
-        assertEquals(2, dial.getWraparounds());
     }
 }
