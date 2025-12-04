@@ -1,5 +1,6 @@
 plugins {
     id("java")
+    id("jacoco")
 }
 
 group = "org.example"
@@ -17,4 +18,27 @@ dependencies {
 
 tasks.test {
     useJUnitPlatform()
+    finalizedBy(tasks.jacocoTestReport) // run coverage report after tests
 }
+
+tasks.jacocoTestReport {
+    dependsOn(tasks.test)
+    reports {
+        xml.required.set(true)
+        html.required.set(true)
+        csv.required.set(false)
+    }
+}
+
+// Optionally enforce coverage rules in the future using the task below
+// tasks.jacocoTestCoverageVerification {
+//     violationRules {
+//         rule {
+//             limit {
+//                 counter = "INSTRUCTION"
+//                 value = "COVEREDRATIO"
+//                 minimum = "0.80".toBigDecimal()
+//             }
+//         }
+//     }
+// }
