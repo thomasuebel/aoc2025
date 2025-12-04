@@ -1,5 +1,7 @@
-package aoc2025.day1;
+package aoc2025;
 
+import aoc2025.day1.Turn;
+import aoc2025.day1.Dial;
 import aoc2025.util.TurnsFile;
 
 import java.util.List;

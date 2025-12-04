@@ -8,7 +8,7 @@ public class Turn {
      * construct a Turn from a String consisting of the direction code L or R followed by a range without leading zeroes
      * the solution interprets L as Left and any other character as Right
      * */
-    Turn (String directionAndRange) {
+    public Turn (String directionAndRange) {
         this.directionAndRange = directionAndRange;
     }
 

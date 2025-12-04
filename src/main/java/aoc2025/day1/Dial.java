@@ -10,7 +10,7 @@ public class Dial {
     int wraparounds = 0;
     int zeroPositionsAfterCompletedTurn = 0;
 
-    protected Dial(int position) {
+    public Dial(int position) {
         this.position = position;
     }
 
