@@ -5,20 +5,17 @@ import aoc2025.util.TurnsFile;
 import java.util.List;
 
 public class Main {
-    public static void main(String[] args) {
+    static void main() {
         List<String> turns = TurnsFile.readFrom("input.txt");
 
         final Dial safeDial = new Dial(50);
-        int zeroCount = 0;
 
         for (String t : turns) {
             safeDial.turn(new Turn(t));
-            if (safeDial.getPosition() == 0) {
-                zeroCount++;
-            }
         }
 
-        System.out.println(zeroCount);
+        System.out.println("Dial positions zero-at-rest: " + safeDial.getZeroPositionsAfterCompletedTurn());
+        System.out.println("Dial wraparounds: " + safeDial.getWraparounds());
     }
 }
 

@@ -25,16 +25,12 @@ class IntegrationTest {
         );
 
         Dial dial = new Dial(50);
-        int zeroCount = 0;
 
         for (String t : turns) {
             dial.turn(new Turn(t));
-            if (dial.getPosition() == 0) {
-                zeroCount++;
-            }
         }
 
-        assertEquals(3, zeroCount); // three 3 exactly at 0
-        assertEquals(6, dial.getWraparounds()); // 6 wraparounds at 0 including zero-at-rest
+        assertEquals(3, dial.getZeroPositionsAfterCompletedTurn()); // 3 exactly at 0
+        assertEquals(6, dial.getWraparounds()); // 6 wraparounds including zero-at-rest
     }
 }
