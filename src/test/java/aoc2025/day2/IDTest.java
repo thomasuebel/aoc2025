@@ -17,4 +17,11 @@ public class IDTest {
         ID id = new ID("11");
         assertFalse(id.isValid());
     }
+
+    @Test
+    void is_an_invalid_long_id_of_equal_sequence() {
+        ID id = new ID("1010");
+
+        assertFalse(id.isValid());
+    }
 }

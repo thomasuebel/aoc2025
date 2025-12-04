@@ -20,5 +20,4 @@ public class ID {
     public boolean isInvalid() {
         return id.matches(A_SINGLE_DIGIT_REPEATED_ONCE);
     }
-
 }
