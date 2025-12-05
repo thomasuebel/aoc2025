@@ -31,4 +31,8 @@ public class Range {
         return idsInRange;
     }
 
+    public List<ID> getAllInvalidIds() {
+        return getIdsInRange().stream(). filter(ID::isInvalid).toList();
+    }
+
 }
