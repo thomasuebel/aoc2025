@@ -54,4 +54,11 @@ public class RangeTest {
         assertEquals("11", ids.get(0).toString());
         assertEquals("22", ids.get(1).toString());
     }
+
+    @Test
+    void getSumOfAllInvalidIds_returns_correct_sum() {
+        Range range = new Range(new ID("11"), new ID("22"));
+
+        assertEquals(33, range.getSumOfAllInvalidIds());
+    }
 }
