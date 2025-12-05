@@ -35,4 +35,8 @@ public class Range {
         return getIdsInRange().stream(). filter(ID::isInvalid).toList();
     }
 
+    public Integer getSumOfAllInvalidIds() {
+        return getAllInvalidIds().stream().mapToInt(ID::asInt).sum();
+    }
+
 }
