@@ -21,4 +21,8 @@ public class ID {
     public boolean isInvalid() {
         return id.startsWith("0") || id.matches(A_SINGLE_DIGIT_REPEATED_ONCE);
     }
+
+    public Integer asInt() {
+        return Integer.parseInt(id);
+    }
 }
