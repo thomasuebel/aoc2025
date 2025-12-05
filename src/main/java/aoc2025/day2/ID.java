@@ -25,4 +25,8 @@ public class ID {
     public Integer asInt() {
         return Integer.parseInt(id);
     }
+
+    public String toString() {
+        return this.id;
+    }
 }
