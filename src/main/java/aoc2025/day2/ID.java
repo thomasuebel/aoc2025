@@ -22,8 +22,8 @@ public class ID {
         return id.startsWith("0") || id.matches(A_SINGLE_DIGIT_REPEATED_ONCE);
     }
 
-    public Integer asInt() {
-        return Integer.parseInt(id);
+    public Long asLong() {
+        return Long.parseLong(id);
     }
 
     public String toString() {

@@ -24,7 +24,7 @@ public class Range {
 
     public List<ID> getIdsInRange() {
         List<ID> idsInRange = new ArrayList<>();
-        for (int i = from.asInt(); i <= to.asInt(); i++) {
+        for (int i = from.asLong(); i <= to.asLong(); i++) {
             idsInRange.add(new ID(String.valueOf(i)));
         }
 
@@ -36,7 +36,7 @@ public class Range {
     }
 
     public Integer getSumOfAllInvalidIds() {
-        return getAllInvalidIds().stream().mapToInt(ID::asInt).sum();
+        return getAllInvalidIds().stream().mapToInt(ID::asLong).sum();
     }
 
 }

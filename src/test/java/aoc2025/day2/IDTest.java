@@ -36,14 +36,14 @@ public class IDTest {
     @Test
     void id_as_int_valid() {
         ID id = new ID("123");
-        assertEquals(123, (int) id.asInt(), "asInt should return the integer representation of a valid string ID.");
+        assertEquals(123, (int) id.asLong(), "asInt should return the integer representation of a valid string ID.");
     }
 
     @Test
     void id_as_int_invalid_input_throws_number_format_exception() {
         ID id = new ID("abc");
         try {
-            id.asInt();
+            id.asLong();
             throw new AssertionError("Expected NumberFormatException to be thrown.");
         } catch (NumberFormatException ignored) {
             // Expected exception
