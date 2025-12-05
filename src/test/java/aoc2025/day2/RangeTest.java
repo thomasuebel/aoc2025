@@ -51,4 +51,14 @@ public class RangeTest {
         List<ID> ids = range.getIdsInRange();
         assertEquals(0, ids.size());
     }
+
+    @Test
+    void getAllInvalidIds_returns_all_invalid_ids_in_range() {
+        Range range = new Range(new ID("11"), new ID("22"));
+        List<ID> ids = range.getAllInvalidIds();
+
+        assertEquals(2, ids.size());
+        assertEquals("11", ids.get(0).id);
+        assertEquals("22", ids.get(1).id);
+    }
 }
