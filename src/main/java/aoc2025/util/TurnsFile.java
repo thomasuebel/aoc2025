@@ -9,9 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class TurnsFile {
-    private TurnsFile() {
-    }
-
     public static List<String> readFrom(String resourceName) {
         InputStream in = TurnsFile.class.getClassLoader().getResourceAsStream(resourceName);
         if (in == null) {
