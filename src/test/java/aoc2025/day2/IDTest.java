@@ -24,4 +24,11 @@ public class IDTest {
 
         assertFalse(id.isValid());
     }
+
+    @Test
+    void is_an_invalid_long_id_of_equal_sequence_with_leading_zero() {
+        ID id = new ID("01010");
+
+        assertFalse(id.isValid());
+    }
 }
