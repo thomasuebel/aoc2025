@@ -36,7 +36,7 @@ public class IDTest {
     @Test
     void id_as_int_valid() {
         ID id = new ID("123");
-        assertEquals(123, (int) id.asLong(), "asInt should return the integer representation of a valid string ID.");
+        assertEquals(123, id.asLong(), "asLong should return the integer representation of a valid string ID.");
     }
 
     @Test

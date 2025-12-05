@@ -88,7 +88,7 @@ public class RangeTest {
                 Range.from("38593856-38593862")
         );
 
-        int sumOfAllInvalidIds = ranges.stream().mapToInt(Range::getSumOfAllInvalidIds).sum();
+        long sumOfAllInvalidIds = ranges.stream().mapToLong(Range::getSumOfAllInvalidIds).sum();
 
         assertEquals(1227775554, sumOfAllInvalidIds);
     }
@@ -97,6 +97,6 @@ public class RangeTest {
     void works_with_long_numbers() {
         Range range = Range.from("6461919174-6461988558");
 
-        assertEquals(2, range.getSumOfAllInvalidIds());
+        assertEquals(6461964619l, range.getSumOfAllInvalidIds());
     }
 }

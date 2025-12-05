@@ -21,7 +21,7 @@ public class Main {
         System.out.println("Dial wraparounds: " + safeDial.getWraparounds());
 
         List<String> ranges = RangesFile.readFrom("day2_input.txt");
-        int sumOfInvalidIdsInRanges = ranges.stream().map(Range::from).mapToInt(Range::getSumOfAllInvalidIds).sum();
+        long sumOfInvalidIdsInRanges = ranges.stream().map(Range::from).mapToLong(Range::getSumOfAllInvalidIds).sum();
 
         System.out.println("Sum of invalid ranges: " + sumOfInvalidIdsInRanges);
 
