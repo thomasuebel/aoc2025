@@ -2,7 +2,6 @@ package aoc2025.day2;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -65,7 +64,6 @@ public class RangeTest {
 
     /**
      * Your job is to find all of the invalid IDs that appear in the given ranges. In the above example:
-     *
      * 11-22 has two invalid IDs, 11 and 22.
      * 95-115 has one invalid ID, 99.
      * 998-1012 has one invalid ID, 1010.
@@ -93,5 +91,12 @@ public class RangeTest {
         int sumOfAllInvalidIds = ranges.stream().mapToInt(Range::getSumOfAllInvalidIds).sum();
 
         assertEquals(1227775554, sumOfAllInvalidIds);
+    }
+
+    @Test
+    void works_with_long_numbers() {
+        Range range = Range.from("6461919174-6461988558");
+
+        assertEquals(2, range.getSumOfAllInvalidIds());
     }
 }
