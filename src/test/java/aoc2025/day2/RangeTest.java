@@ -9,11 +9,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class RangeTest {
     @Test
-    void range_has_a_from_and_to_id() {
-        Range range = new Range(new ID("1"), new ID("2"));
-    }
-
-    @Test
     void from_parses_valid_range_string() {
         Range range = Range.from("1-2");
         assertEquals("1", range.from.toString());
@@ -22,9 +17,7 @@ public class RangeTest {
 
     @Test
     void from_throws_exception_for_invalid_format() {
-        assertThrows(ArrayIndexOutOfBoundsException.class, () -> {
-            Range.from("invalid");
-        });
+        assertThrows(ArrayIndexOutOfBoundsException.class, () -> Range.from("invalid"));
     }
 
     @Test
