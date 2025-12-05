@@ -14,8 +14,8 @@ public class Range {
 
     /**
      * Create a Range from a String consisting of two IDs separated by a dash
-     * @param range
-     * @return
+     * @param range the range string
+     * @return a new Range
      */
     public static Range from(String range) {
         String[] ids = range.split("-");
@@ -23,7 +23,12 @@ public class Range {
     }
 
     public List<ID> getIdsInRange() {
-        return null;
+        List<ID> idsInRange = new ArrayList<>();
+        for (int i = from.asInt(); i <= to.asInt(); i++) {
+            idsInRange.add(new ID(String.valueOf(i)));
+        }
+
+        return idsInRange;
     }
 
 }
