@@ -4,7 +4,7 @@ public class ID {
     String id;
 
     // regular expression for invalid ids - i.e. ids that are made only of some sequence of digits repeated twice
-    private static final String A_SINGLE_DIGIT_REPEATED_ONCE = "(.+?)\\1";
+    private static final String A_SINGLE_DIGIT_REPEATED_ONCE = "(d+?)\\1";
 
     public ID(String id) {
         this.id = id;
