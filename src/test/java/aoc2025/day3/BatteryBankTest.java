@@ -22,15 +22,11 @@ public class BatteryBankTest {
         assertEquals(0, result, "Maximum joltage rating for an empty bank should be 0");
     }
 
-    /**
-     * Test case for a single battery in the bank.
-     * Verifies that the method returns 0 as no pairs can be formed.
-     */
     @Test
-    public void maximum_joltage_rating_for_single_battery() {
-        BatteryBank batteryBank = new BatteryBank("5");
+    public void maximum_joltage_rating_for_two_batteries() {
+        BatteryBank batteryBank = new BatteryBank("45");
         int result = batteryBank.getMaximumJoltageRating();
-        assertEquals(5, result, "Maximum joltage rating of a single battery should be 5");
+        assertEquals(45, result);
     }
 
     /**
@@ -38,10 +34,10 @@ public class BatteryBankTest {
      * Verifies that the method calculates the rating of the only possible pair.
      */
     @Test
-    public void maximum_joltage_rating_for_two_batteries() {
-        BatteryBank batteryBank = new BatteryBank("34");
+    public void maximum_joltage_rating_for_three_batteries() {
+        BatteryBank batteryBank = new BatteryBank("345");
         int result = batteryBank.getMaximumJoltageRating();
-        assertEquals(34, result, "Maximum joltage rating should be the integer value of the two batteries combined");
+        assertEquals(45, result, "Maximum joltage rating should be the integer value of the two batteries combined");
     }
 
     /**
