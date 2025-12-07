@@ -10,6 +10,7 @@ import java.util.List;
 
 public class Main {
     static void main() {
+        // Day 1
         List<String> turns = LinesBasedInputResourceFile.readFrom("input.txt");
         final Dial safeDial = new Dial(50);
 
@@ -20,11 +21,12 @@ public class Main {
         System.out.println("Dial positions zero-at-rest: " + safeDial.getZeroPositionsAfterCompletedTurn());
         System.out.println("Dial wraparounds: " + safeDial.getWraparounds());
 
+        // Day 2
         List<String> ranges = RangesFile.readFrom("day2_input.txt");
         long sumOfInvalidIdsInRanges = ranges.stream().map(Range::from).mapToLong(Range::getSumOfAllInvalidIds).sum();
 
         System.out.println("Sum of invalid ranges: " + sumOfInvalidIdsInRanges);
-
+        
     }
 
 }
