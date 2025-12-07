@@ -1,6 +1,8 @@
 package aoc2025.day3;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -62,5 +64,17 @@ public class BatteryBankTest {
         BatteryBank batteryBank = new BatteryBank("0000000");
         int result = batteryBank.getMaximumJoltageRating();
         assertEquals(0, result, "Maximum joltage rating for all zero batteries should be 0");
+    }
+
+    @ParameterizedTest
+    @CsvSource(delimiter = ',', value = {
+        "987654321111111, 98",
+        "811111111111119, 89",
+        "234234234234278, 78",
+        "818181911112111, 92"
+    })
+    void test(String input, int expected) {
+        BatteryBank batteryBank = new BatteryBank(input);
+        assertEquals(expected, batteryBank.getMaximumJoltageRating());
     }
 }
