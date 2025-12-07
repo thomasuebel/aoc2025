@@ -8,9 +8,9 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class TurnsFile {
+public final class LinesBasedInputResourceFile {
     public static List<String> readFrom(String resourceName) {
-        InputStream in = TurnsFile.class.getClassLoader().getResourceAsStream(resourceName);
+        InputStream in = LinesBasedInputResourceFile.class.getClassLoader().getResourceAsStream(resourceName);
         if (in == null) {
             throw new IllegalStateException("Resource not found: " + resourceName);
         }

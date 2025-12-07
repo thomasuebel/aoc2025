@@ -4,13 +4,13 @@ import aoc2025.day1.Turn;
 import aoc2025.day1.Dial;
 import aoc2025.day2.Range;
 import aoc2025.util.RangesFile;
-import aoc2025.util.TurnsFile;
+import aoc2025.util.LinesBasedInputResourceFile;
 
 import java.util.List;
 
 public class Main {
     static void main() {
-        List<String> turns = TurnsFile.readFrom("input.txt");
+        List<String> turns = LinesBasedInputResourceFile.readFrom("input.txt");
         final Dial safeDial = new Dial(50);
 
         for (String t : turns) {

@@ -6,11 +6,11 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class TurnsFileTest {
+class LinesBasedInputResourceFileTest {
 
     @Test
     void readTurnsFromResource_validFile_returnsList() {
-        List<String> result = TurnsFile.readFrom("test_turns.txt");
+        List<String> result = LinesBasedInputResourceFile.readFrom("test_turns.txt");
         assertNotNull(result);
         assertEquals(4, result.size());
         assertEquals("R2", result.get(0));
@@ -20,7 +20,7 @@ class TurnsFileTest {
     @Test
     void readTurnsFromResource_nonExistentFile_throwsException() {
         Exception exception = assertThrows(IllegalStateException.class, () -> {
-            TurnsFile.readFrom("non_existent_file.txt");
+            LinesBasedInputResourceFile.readFrom("non_existent_file.txt");
         });
         assertTrue(exception.getMessage().contains("Resource not found"));
     }
