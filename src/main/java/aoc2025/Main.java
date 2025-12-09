@@ -9,6 +9,8 @@ import aoc2025.util.LinesBasedInputResourceFile;
 
 import java.util.List;
 
+import static java.lang.Long.sum;
+
 public class Main {
     static void main() {
         // Day 1
@@ -27,8 +29,19 @@ public class Main {
 
         // Day 3
         List<String> banks = LinesBasedInputResourceFile.readFrom("day3_input.txt");
-        int combinedJoltageRating = banks.stream().map(BatteryBank::new).mapToInt(BatteryBank::getMaximumJoltageRating).sum();
-        System.out.println("Combined joltage rating: " + combinedJoltageRating);
+        int combinedTwoBatteriesJoltage = banks.stream()
+                .map(BatteryBank::new)
+                .mapToInt(BatteryBank::getMaximumJoltageRating)
+                .sum();
+        System.out.println("Combined joltage rating: " + combinedTwoBatteriesJoltage);
+        // Day 3 - part 2
+        var combinedTwelveBatteriesJoltage = banks.stream()
+                .map(BatteryBank::new)
+                .mapToLong(b -> b.getMaximumJoltageRating(12))
+                .sum();
+        System.out.println("Combined joltage rating: " + combinedTwelveBatteriesJoltage);
+
+                
     }
 
 }
