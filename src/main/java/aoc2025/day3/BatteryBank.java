@@ -15,7 +15,7 @@ public class BatteryBank {
     /**
      * The length of combinations of batteries as per the given puzzle.
      */
-    public static final int LENGTH_OF_BATTERY_COMBINATION = 2;
+    public static final int LENGTH_OF_BATTERY_COMBINATION = 12;
     private String bank;
 
     public BatteryBank(String bank) {
@@ -23,15 +23,27 @@ public class BatteryBank {
     }
 
     /**
-     * O(N) complexity to find the maximum joltage rating for a combination
-     * of batteries in the given bank.
+     * Find the combination of 2 batteries in the given bank to produce the highest joltage rating.
      * @return the maximum joltage rating
      */
     public int getMaximumJoltageRating() {
-        String maximumJoltageRating = getVariableLengthJoltageRating(0, LENGTH_OF_BATTERY_COMBINATION);
+        String maximumJoltageRating = getVariableLengthJoltageRating(0, 2);
 
         try {
             return Integer.parseInt(maximumJoltageRating);
+        } catch (NumberFormatException e) {
+            return 0;
+        }
+    }
+
+    /**
+     * Find the combination of the given number of batteries in the given bank to produce the highest joltage rating.
+     * @param numberOfBatteries - The number of batteries to consider
+     * @return the maximum joltage rating
+     */
+    public long getMaximumJoltageRating(int numberOfBatteries) {
+        try {
+            return Long.parseLong(getVariableLengthJoltageRating(0, numberOfBatteries));
         } catch (NumberFormatException e) {
             return 0;
         }

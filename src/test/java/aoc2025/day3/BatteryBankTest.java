@@ -69,8 +69,20 @@ public class BatteryBankTest {
         "234234234234278, 78",
         "818181911112111, 92"
     })
-    void test(String input, int expected) {
+    void test_two_battery_combination(String input, int expected) {
         BatteryBank batteryBank = new BatteryBank(input);
         assertEquals(expected, batteryBank.getMaximumJoltageRating());
+    }
+
+    @ParameterizedTest
+    @CsvSource(delimiter = ',', value = {
+            "987654321111111, 987654321111",
+            "811111111111119, 811111111119",
+            "234234234234278, 434234234278",
+            "818181911112111, 888911112111"
+    })
+    void test_12_batteries_combination(String input, long expected) {
+        BatteryBank batteryBank = new BatteryBank(input);
+        assertEquals(expected, batteryBank.getMaximumJoltageRating(12));
     }
 }
