@@ -1,7 +1,5 @@
 package aoc2025.day3;
 
-import java.lang.management.ThreadInfo;
-
 /**
  * The Battery Bank
  * is represented as a string of digits between 0 and 9. Each digit
@@ -14,6 +12,10 @@ import java.lang.management.ThreadInfo;
  * would create a joltage rating of 99 - the highest possible rating in this bank.
  */
 public class BatteryBank {
+    /**
+     * The length of combinations of batteries as per the given puzzle.
+     */
+    public static final int LENGTH_OF_BATTERY_COMBINATION = 2;
     private String bank;
 
     public BatteryBank(String bank) {
@@ -26,27 +28,39 @@ public class BatteryBank {
      * @return the maximum joltage rating
      */
     public int getMaximumJoltageRating() {
-        // loop through all batteries and the highest, remember its index position
-        int lengthOfBank = bank.length();
+        String maximumJoltageRating = getVariableLengthJoltageRating(0, LENGTH_OF_BATTERY_COMBINATION);
 
-        // First Pass - Find first digit
-        int indexOfHighestJoltageRating = 0;
-        int highestJoltageRating = 0;
-        for (int i = 0; i < lengthOfBank - 1; i++) {
-            if (Character.getNumericValue(bank.charAt(i)) > highestJoltageRating) {
-                highestJoltageRating = Character.getNumericValue(bank.charAt(i));
-                indexOfHighestJoltageRating = i;
+        try {
+            return Integer.parseInt(maximumJoltageRating);
+        } catch (NumberFormatException e) {
+            return 0;
+        }
+    }
+
+    /**
+     * Find the highest joltage rating for a combination of batteries starting at the given index and given the
+     * required character length.
+     *
+     * @param startingIndex - The index of the first character in the bank to consider
+     * @param charactersOfBankRequired - The amount of characters still required to build a valid bank
+     * @return String containing a combination of batteries in a bank with the highest joltage rating
+     */
+    private String getVariableLengthJoltageRating(int startingIndex, int charactersOfBankRequired) {
+        if (charactersOfBankRequired == 0 || this.bank.length() < charactersOfBankRequired) {
+            return "";
+        }
+
+        var indexOFHighestJoltageFoundSoFar = 0;
+        var highestJoltageFoundSoFar = 0;
+        var numericValue = 0;
+        for (int i = startingIndex; i <= (this.bank.length() - charactersOfBankRequired); i++) {
+            numericValue = Character.getNumericValue(bank.charAt(i));
+            if (numericValue > highestJoltageFoundSoFar) {
+                indexOFHighestJoltageFoundSoFar = i;
+                highestJoltageFoundSoFar = numericValue;
             }
         }
 
-        // Second Pass - Start after the index of the first highest number
-        int secondDigitOfHighestJoltageRating = 0;
-        for (int i = indexOfHighestJoltageRating + 1; i < lengthOfBank; i++) {
-            if (Character.getNumericValue(bank.charAt(i)) > secondDigitOfHighestJoltageRating) {
-                secondDigitOfHighestJoltageRating = Character.getNumericValue(bank.charAt(i));
-            }
-        }
-
-        return Integer.parseInt("%d%d".formatted(highestJoltageRating, secondDigitOfHighestJoltageRating));
+        return highestJoltageFoundSoFar + getVariableLengthJoltageRating(indexOFHighestJoltageFoundSoFar + 1, charactersOfBankRequired - 1);
     }
 }
