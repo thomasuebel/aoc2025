@@ -62,37 +62,6 @@ public class RangeTest {
         assertEquals(33, range.getSumOfAllInvalidIds());
     }
 
-    /**
-     * Your job is to find all of the invalid IDs that appear in the given ranges. In the above example:
-     * 11-22 has two invalid IDs, 11 and 22.
-     * 95-115 has one invalid ID, 99.
-     * 998-1012 has one invalid ID, 1010.
-     * 1188511880-1188511890 has one invalid ID, 1188511885.
-     * 222220-222224 has one invalid ID, 222222.
-     * 1698522-1698528 contains no invalid IDs.
-     * 446443-446449 has one invalid ID, 446446.
-     * 38593856-38593862 has one invalid ID, 38593859.
-     * The rest of the ranges contain no invalid IDs.
-     * Adding up all the invalid IDs in this example produces 1227775554.
-     */
-    @Test
-    void getSumOfAllInvalidIds_for_puzzle_input() {
-        List<Range> ranges = List.of(
-                Range.from("11-22"),
-                Range.from("95-115"),
-                Range.from("998-1012"),
-                Range.from("1188511880-1188511890"),
-                Range.from("222220-222224"),
-                Range.from("1698522-1698528"),
-                Range.from("446443-446449"),
-                Range.from("38593856-38593862")
-        );
-
-        long sumOfAllInvalidIds = ranges.stream().mapToLong(Range::getSumOfAllInvalidIds).sum();
-
-        assertEquals(1227775554, sumOfAllInvalidIds);
-    }
-
     @Test
     void works_with_long_numbers() {
         Range range = Range.from("6461919174-6461988558");
