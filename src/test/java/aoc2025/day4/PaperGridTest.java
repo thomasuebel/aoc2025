@@ -172,4 +172,24 @@ class PaperGridTest {
         // All four '@' positions are accessible
         assertEquals(4, paperGrid.getAccessibleCount());
     }
+    
+    @Test
+    void clean_up_removes_all_accessible_positions() {
+        List<String> lines = List.of(
+                "..@@.@@@@.",
+                "@@@.@.@.@@",
+                "@@@@@.@.@@",
+                "@.@@@@..@.",
+                "@@.@@@@.@@",
+                ".@@@@@@@.@",
+                ".@.@.@.@@@",
+                "@.@@@.@@@@",
+                ".@@@@@@@@.",
+                "@.@.@@@.@."
+        );
+
+        PaperGrid paperGrid = PaperGrid.fromLines(lines);
+
+        assertEquals(43, paperGrid.cleanUp());
+    }
 }
