@@ -33,6 +33,16 @@ public class PaperGrid {
         return grid;
     }
 
+    /**
+     * Retrieves all adjacent elements in the grid surrounding the specified row and column position.
+     * Adjacents include all valid non-empty positions forming an 8-connected neighborhood
+     * around the specified point. The central position itself is excluded from the result.
+     *
+     * @param row the row index of the central position
+     * @param column the column index of the central position
+     * @return a String containing all adjacent non-empty grid elements around the specified position.
+     *         Returns an empty string if there are no valid adjacent elements or the grid is empty.
+     */
     public String getAdjacentsOf(int row, int column) {
         StringBuilder adjacents = new StringBuilder();
         for (int i = row - 1; i <= row + 1; i++) {
@@ -53,6 +63,40 @@ public class PaperGrid {
             }
         }
         return adjacents.toString();
+    }
+
+    /**
+     * Determines if the position at the specified row and column is accessible by forklifts.
+     * A position is considered accessible if it is surrounded by fewer than four rolls of paper (@)
+     * in its adjacent positions.
+     *
+     * @param row the row index of the position to check
+     * @param column the column index of the position to check
+     * @return true if the specified position is accessible, false otherwise
+     */
+    public boolean isAccessible(int row, int column) {
+        return getAdjacentsOf(row, column).length() < 4;
+    }
+
+    public boolean isInUse(int row, int column) {
+        if (row < 0 || row >= height || column < 0 || column >= width) {
+            // Out of bounds are assumed in accessible
+            return false;
+        }
+        return this.grid[row][column] == '@'; // there's a paper roll at this position
+    }
+
+    public long getAccessibleCount() {
+        long accessibleCount = 0;
+        for (int row = 0; row < height; row++) {
+            for (int column = 0; column < width; column++) {
+                if (isInUse(row, column) && isAccessible(row, column)) {
+                    accessibleCount++;
+                }
+            }
+        }
+
+        return accessibleCount;
     }
 
     public int getWidth() {
