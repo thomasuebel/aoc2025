@@ -4,9 +4,11 @@ import aoc2025.day1.Turn;
 import aoc2025.day1.Dial;
 import aoc2025.day2.Range;
 import aoc2025.day3.BatteryBank;
+import aoc2025.day4.PaperGrid;
 import aoc2025.util.RangesFile;
 import aoc2025.util.LinesBasedInputResourceFile;
 
+import java.awt.print.Paper;
 import java.util.List;
 
 import static java.lang.Long.sum;
@@ -41,7 +43,13 @@ public class Main {
                 .sum();
         System.out.println("Combined joltage rating: " + combinedTwelveBatteriesJoltage);
 
-                
+        // Day4
+        PaperGrid paperGrid = PaperGrid.fromLines(
+                LinesBasedInputResourceFile.readFrom("day4_input.txt"));
+        System.out.println("Number of accessible positions: " + paperGrid.getAccessibleCount());
+
+        // Day 4 - part 2
+        System.out.println("Number of cleaned up paper rolls: " + paperGrid.cleanUp());
     }
 
 }
