@@ -17,7 +17,7 @@ public class PaperGrid {
     private int width = 0;
     private int height = 0;
 
-    public PaperGrid fromLines(List<String> lines) {
+    public static PaperGrid fromLines(List<String> lines) {
         PaperGrid grid = new PaperGrid();
         if (lines.isEmpty()) {
             return grid;
@@ -97,6 +97,33 @@ public class PaperGrid {
         }
 
         return accessibleCount;
+    }
+
+    /**
+     * Cleans up all accessible positions in the grid that are currently in use.
+     * A position is considered "in use" if it contains a paper roll ('@') and
+     * "accessible" if it is surrounded by fewer than four adjacent paper rolls ('@').
+     * The cleanup operation recursively processes the grid until no accessible
+     * positions remain.
+     *
+     * @return the total number of positions cleaned up during the operation.
+     */
+    public long cleanUp() {
+        long cleanedUpCount = 0;
+        for (int row = 0; row < height; row++) {
+            for (int column = 0; column < width; column++) {
+                if (isInUse(row, column) && isAccessible(row, column)) {
+                    grid[row][column] = '.';
+                    cleanedUpCount++;
+                }
+            }
+        }
+
+        if (cleanedUpCount == 0) {
+            return 0L;
+        }
+
+        return cleanedUpCount + cleanUp();
     }
 
     public int getWidth() {
