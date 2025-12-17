@@ -5,11 +5,14 @@ import aoc2025.day1.Dial;
 import aoc2025.day2.Range;
 import aoc2025.day3.BatteryBank;
 import aoc2025.day4.PaperGrid;
+import aoc2025.day5.IngredientRange;
 import aoc2025.util.RangesFile;
 import aoc2025.util.LinesBasedInputResourceFile;
 
 import java.awt.print.Paper;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static java.lang.Long.sum;
 
@@ -50,6 +53,30 @@ public class Main {
 
         // Day 4 - part 2
         System.out.println("Number of cleaned up paper rolls: " + paperGrid.cleanUp());
+
+        // Day 5
+        var lines = LinesBasedInputResourceFile.readFrom("day5_input.txt");
+        var freshIngredientRanges = lines.stream()
+                .map(IngredientRange::from)
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .toList();
+
+        var ingredients = lines.stream()
+                .filter(l -> !l.contains("-"))
+                .mapToLong(Long::parseLong)
+                .boxed()
+                .toList();
+
+        int freshIngredientsCount = 0;
+        for (var ingredient : ingredients) {
+            if (freshIngredientRanges.stream().anyMatch(r -> r.contains(ingredient))) {
+                freshIngredientsCount++;
+            }
+        }
+
+        System.out.println("Number of fresh ingredients: " + freshIngredientsCount);
+
     }
 
 }
