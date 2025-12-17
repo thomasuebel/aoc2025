@@ -68,4 +68,22 @@ class IngredientRangeTest {
     void invalid_ingredient_range() {
         assertThrows(NoSuchElementException.class, () -> IngredientRange.from("10").orElseThrow());
     }
+
+    /**
+     * Test to verify the correct calculation of fresh ingredients for a valid range.
+     */
+    @Test
+    void calculate_fresh_ingredients_for_valid_range() {
+        IngredientRange range = IngredientRange.from("10-20").orElseThrow();
+        assertEquals(11, range.getFreshIngredientsCount(), "Fresh ingredients count should be 10 for range [10, 20].");
+    }
+
+    /**
+     * Test to verify the correct calculation of fresh ingredients for a single-point range.
+     */
+    @Test
+    void calculate_fresh_ingredients_for_single_point_range() {
+        IngredientRange range = IngredientRange.from("10-10").orElseThrow();
+        assertEquals(1, range.getFreshIngredientsCount(), "Fresh ingredients count should be 0 for a single-point range [10, 10].");
+    }
 }

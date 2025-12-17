@@ -23,4 +23,8 @@ public class IngredientRange {
     public boolean contains(long value) {
         return value >= from && value <= to;
     }
+
+    public long getFreshIngredientsCount() {
+        return to - from + 1 ; // inclusive range
+    }
 }
